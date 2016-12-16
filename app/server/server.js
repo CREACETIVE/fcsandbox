@@ -1,13 +1,15 @@
 import express from 'express'
+import path from 'path'
 
 let app = express()
+const htmlFile = path.resolve('./dist/index.html')
 
 console.log('Starting to feel better')
 
+app.use('/j', express.static(path.resolve('./dist/j')))
+
 app.get('/', (req, res) => {
-	res.send(`<h1>Hello Fantasy Foot</h1>
-		<h2>Se vedi questa pagina, qualcuno e bravo (senza accento)</h2>
-	`)
+	res.sendFile(htmlFile)
 })
 
 app.listen(3000, () => console.log('magic appening here on 3000'))
